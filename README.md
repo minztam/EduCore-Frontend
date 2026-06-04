@@ -1,79 +1,92 @@
 ﻿# EduCore Web
 
-EduCore Web là một ứng dụng học trực tuyến được xây dựng bằng React. Dự án gồm cả giao diện học viên/front-end và giao diện quản trị/admin nhằm quản lý khóa học, danh mục, chương/bài học, bài viết, review, người dùng và thông báo.
+Giao diện quản lý khóa học và học tập trực tuyến (Frontend).
 
-## 🌐 Hệ sinh thái dự án
+Demo: https://edu-core-frontend-topaz.vercel.app/
 
-Dự án này là phần Frontend của hệ thống EduCore. Để hệ thống hoạt động đầy đủ tính năng, bạn cần kết nối với Backend API:
+## 🚀 Tổng quan
 
-- **Backend Repository**: [EduCore-API](https://github.com/minztam/EduCore-API)
+EduCore Web là phần frontend của hệ thống EduCore — cung cấp giao diện học viên và quản trị để quản lý khóa học, chương, bài học, bài viết, review, người dùng và thông báo.
 
----
+Backend: https://github.com/minztam/EduCore-API
 
-## 🚀 Công nghệ sử dụng
+## 📦 Công nghệ chính
 
-- **Core**: React 19, React Router v7
-- **UI/UX**: Ant Design, Tailwind CSS, Lucide React
-- **Data Fetching**: Axios
-- **Realtime**: @microsoft/signalr (Chat & Notifications)
-- **Utilities**: Recharts (Dashboard), jsPDF, xlsx (Export data), CKEditor 5
+- React 19, React Router v7
+- Ant Design, Tailwind CSS
+- Axios, CKEditor 5
+- Recharts, jsPDF, xlsx
+- @react-oauth/google, lucide-react, react-icons
+- @microsoft/signalr (realtime)
 
----
+## ⚙️ Cài đặt nhanh
 
-## 🛠 Hướng dẫn cài đặt
+Yêu cầu: Node.js v18+, `npm` hoặc `yarn`.
 
-1. Yêu cầu
+1. Clone repo
 
-- Node.js (v18 trở lên)
-- npm hoặc yarn
-
-2. Thiết lập
-
-# Clone dự án
-
-````bash
+```bash
 git clone <your-frontend-repo-url>
+cd educore.web
+```
 
-# Cài đặt dependencies
+2. Cài dependencies
+
 ```bash
 npm install
+```
 
-3. Cấu hình môi trường
-Tạo file .env.local tại thư mục gốc và điền các thông tin sau:
-```bash
+3. Tạo file cấu hình môi trường `.env.local` tại thư mục gốc với nội dung:
+
+```env
 REACT_APP_API_URL=https://localhost:<port>/api
-REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id_here
+REACT_APP_GOOGLE_CLIENT_ID=your_client_id_here
+```
 
-4. Chạy dự án
+4. Chạy ứng dụng (development)
+
 ```bash
-# Chạy ở chế độ phát triển
 npm start
+```
 
-📂 Cấu trúc dự án
+## 🗂️ Cấu trúc thư mục (tóm tắt)
+
+```
 src/
-├── admin/          # Layout và các trang quản trị (Admin)
-├── api/            # Layer xử lý gọi API (Axios)
-├── components/     # Các thành phần dùng chung (Header, Chat, ProtectedRoute)
-├── hooks/          # Custom React Hooks
-├── pages/          # Các trang dành cho học viên (Client)
-├── App.js          # Định nghĩa Routing (Client & Admin)
-└── index.js        # Cấu hình Providers (GoogleAuth, Redux/Context)
+├── admin/        # admin layout & pages
+├── api/          # axios wrappers
+├── components/   # shared components (Header, Chat, ProtectedAdminRoute)
+├── hooks/        # custom hooks
+├── page/         # client pages
+├── App.js        # routes
+└── index.js      # app bootstrap (Google OAuth provider)
+```
 
-💡 Tính năng chính
-    🎓 Client (Học viên)
-        Khám phá: Xem danh sách khóa học, tìm kiếm, lọc theo danh mục/mức độ.
-        Học tập: Giao diện bài học tích hợp video/tài liệu, theo dõi tiến độ.
-        Thanh toán: Quy trình thanh toán tích hợp VNPAY.
-        Tương tác: Chat nội bộ (1:1) và nhận thông báo theo thời gian thực.
+## 🧩 Tính năng chính
 
-    ⚙️ Admin (Quản trị)
-        Quản trị toàn diện: Khóa học, chương, bài học, danh mục, bài viết.
-        Dashboard: Xem thống kê tài chính, người dùng bằng biểu đồ (Recharts).
-        Quản lý nội dung: Cấu hình trang Home (Hero section), gửi thông báo.
-        Bảo mật: Các route Admin được bảo vệ bởi ProtectedAdminRoute.
+### Client
 
-📚 API Integration
-Ứng dụng tương tác với Backend thông qua các Module chính:
-Auth, Courses, Enrollments, Payments, Notifications, Chat, Posts, Users.
-Tham khảo các hàm gọi API tại thư mục src/api/.
-````
+- Danh sách & tìm kiếm khóa học, lọc theo danh mục/level/price
+- Trang chi tiết khóa học, preview video, đăng ký
+- Trang học tập cho học viên đã đăng ký (`/learn/:slug`)
+- Thanh toán & kết quả thanh toán
+- Chat nội bộ và thông báo realtime
+
+### Admin
+
+- Quản lý categories, courses, chapters, lessons
+- Quản lý posts, reviews, home-hero, users, notifications
+- Dashboard (Recharts) và trang tài chính
+- Route admin được bảo vệ (`ProtectedAdminRoute`)
+
+## 🔗 API backend
+
+Frontend tương tác với các module backend: `auth`, `courses`, `categories`, `chapters`, `lessons`, `reviews`, `enrollments`, `payments`, `notifications`, `users`, `posts`, `home-hero`, `chat`.
+
+## 📝 Ghi chú
+
+- `src/index.js` đã cấu hình `GoogleOAuthProvider` với `clientId`.
+- Kiểm tra `src/api/` để biết cấu trúc các endpoint và cách gọi API.
+- Admin routes yêu cầu `localStorage.token` và `user.role === 'Admin'`.
+
+---
