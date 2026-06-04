@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 const envBaseURL = process.env.REACT_APP_API_BASE_URL;
+console.log('Đang gọi API tại:', envBaseURL);
 
 const axiosClient = axios.create({
-  baseURL: envBaseURL,
+  baseURL: envBaseURL || 'https://educore-api-d1v2.onrender.com/api',
 });
 
 axiosClient.interceptors.request.use((config) => {

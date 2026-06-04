@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+﻿# EduCore Web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+EduCore Web là một ứng dụng học trực tuyến được xây dựng bằng React. Dự án gồm cả giao diện học viên/front-end và giao diện quản trị/admin nhằm quản lý khóa học, danh mục, chương/bài học, bài viết, review, người dùng và thông báo.
 
-## Available Scripts
+## 🌐 Hệ sinh thái dự án
 
-In the project directory, you can run:
+Dự án này là phần Frontend của hệ thống EduCore. Để hệ thống hoạt động đầy đủ tính năng, bạn cần kết nối với Backend API:
 
-### `npm start`
+- **Backend Repository**: [EduCore-API](https://github.com/minztam/EduCore-API)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Công nghệ sử dụng
 
-### `npm test`
+- **Core**: React 19, React Router v7
+- **UI/UX**: Ant Design, Tailwind CSS, Lucide React
+- **Data Fetching**: Axios
+- **Realtime**: @microsoft/signalr (Chat & Notifications)
+- **Utilities**: Recharts (Dashboard), jsPDF, xlsx (Export data), CKEditor 5
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠 Hướng dẫn cài đặt
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Yêu cầu
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js (v18 trở lên)
+- npm hoặc yarn
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Thiết lập
 
-### `npm run eject`
+# Clone dự án
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+````bash
+git clone <your-frontend-repo-url>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Cài đặt dependencies
+```bash
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Cấu hình môi trường
+Tạo file .env.local tại thư mục gốc và điền các thông tin sau:
+```bash
+REACT_APP_API_URL=https://localhost:<port>/api
+REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id_here
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Chạy dự án
+```bash
+# Chạy ở chế độ phát triển
+npm start
 
-## Learn More
+📂 Cấu trúc dự án
+src/
+├── admin/          # Layout và các trang quản trị (Admin)
+├── api/            # Layer xử lý gọi API (Axios)
+├── components/     # Các thành phần dùng chung (Header, Chat, ProtectedRoute)
+├── hooks/          # Custom React Hooks
+├── pages/          # Các trang dành cho học viên (Client)
+├── App.js          # Định nghĩa Routing (Client & Admin)
+└── index.js        # Cấu hình Providers (GoogleAuth, Redux/Context)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+💡 Tính năng chính
+    🎓 Client (Học viên)
+        Khám phá: Xem danh sách khóa học, tìm kiếm, lọc theo danh mục/mức độ.
+        Học tập: Giao diện bài học tích hợp video/tài liệu, theo dõi tiến độ.
+        Thanh toán: Quy trình thanh toán tích hợp VNPAY.
+        Tương tác: Chat nội bộ (1:1) và nhận thông báo theo thời gian thực.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ⚙️ Admin (Quản trị)
+        Quản trị toàn diện: Khóa học, chương, bài học, danh mục, bài viết.
+        Dashboard: Xem thống kê tài chính, người dùng bằng biểu đồ (Recharts).
+        Quản lý nội dung: Cấu hình trang Home (Hero section), gửi thông báo.
+        Bảo mật: Các route Admin được bảo vệ bởi ProtectedAdminRoute.
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📚 API Integration
+Ứng dụng tương tác với Backend thông qua các Module chính:
+Auth, Courses, Enrollments, Payments, Notifications, Chat, Posts, Users.
+Tham khảo các hàm gọi API tại thư mục src/api/.
+````
